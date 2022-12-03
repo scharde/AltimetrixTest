@@ -28,7 +28,8 @@ namespace TestProject.WebAPI.Controllers
         public async Task<IActionResult> Get(int id)
         {
             UserModel user = await _userService.GetUser(id);
-            return Ok(user);
+            
+            return user == null ? NotFound("User not found") : Ok(user);
         }
 
         [HttpPost]
